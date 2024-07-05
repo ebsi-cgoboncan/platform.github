@@ -11,10 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
-
-    permissions:
-      id-token: write
-      contents: read
     timeout-minutes: 10
 
     concurrency:
