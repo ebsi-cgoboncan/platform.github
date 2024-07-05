@@ -1,0 +1,31 @@
+name: cd
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        description: 'Target SDLC environment'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    permissions:
+      id-token: write
+      contents: read
+    timeout-minutes: 10
+
+    concurrency:
+      group: ${{ inputs.env }}
+      cancel-in-progress: true
+
+    steps:
+      - id: version
+        env:
+        EVENT_NAME: ${{ github.event_name }}
+        WORKFLOW: ${{ github.workflow }}
+        run: |
+          echo "event name: $EVENT_NAME"
+          echo "workflow: $WORKFLOW"
