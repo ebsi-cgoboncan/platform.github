@@ -24,8 +24,8 @@ jobs:
     steps:
       - id: version
         env:
-        EVENT_NAME: ${{ github.event_name }}
-        WORKFLOW: ${{ github.workflow }}
+          EVENT_NAME: ${{ github.event_name }}
+          WORKFLOW: ${{ github.workflow }}
         run: |
           echo "event name: $EVENT_NAME"
           echo "workflow: $WORKFLOW"
